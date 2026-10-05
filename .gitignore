@@ -1,0 +1,17 @@
+# Virtual environment (recreated by `uv sync`)
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+
+# Build output
+build/
+dist/
+*.egg-info/
+
+.DS_Store
