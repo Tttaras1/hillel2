@@ -1,4 +1,4 @@
-from pylearn import greet
+from main import greet
 
 
 def test_greet_includes_the_name():
