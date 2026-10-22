@@ -1,16 +1,16 @@
 from collections import ChainMap
 from collections import defaultdict
 
-# defaults = {"theme": "light", "sidebar": True}
-# user_settings = {"theme": "dark"}
+defaults = {"theme": "light", "sidebar": True}
+user_settings = {"theme": "dark"}
 
-# resulting_config = ChainMap(user_settings, defaults)
-# print(resulting_config["theme"])
-# print(resulting_config["sidebar"])
-# print(resulting_config)
-# my_config = defaults.copy()
-# my_config.update(user_settings)
-# print(my_config)
+resulting_config = ChainMap(user_settings, defaults)
+print(resulting_config["theme"])
+print(resulting_config["sidebar"])
+print(resulting_config)
+my_config = defaults.copy()
+my_config.update(user_settings)
+print(my_config)
 
 
 my_dict = defaultdict(list)
