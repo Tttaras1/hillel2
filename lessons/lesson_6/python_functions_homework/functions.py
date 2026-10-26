@@ -1,7 +1,9 @@
+from typing import TypeGuard
+
 # Helpers
 
 
-def verify_int(num: int) -> bool:
+def verify_int(num: object) -> TypeGuard[int]:
     """
     Verifies if value is int
 
@@ -14,7 +16,7 @@ def verify_int(num: int) -> bool:
     return type(num) is int
 
 
-def verify_float(num: float) -> bool:
+def verify_float(num: object) -> TypeGuard[float]:
     """
     Verifies if value is float
 
@@ -27,7 +29,7 @@ def verify_float(num: float) -> bool:
     return type(num) is float
 
 
-def verify_number(num: int | float) -> bool:
+def verify_number(num: object) -> TypeGuard[int | float]:
     """
     Checks whether the value is an integer or a float.
 
@@ -179,14 +181,19 @@ def create_profile(name: str, **kwargs: object) -> dict[str, object] | None:
     if type(name) is not str or len(name) == 0:
         print("Name can't be empty")
         return None
-    age = kwargs["age"]
-    if not verify_int(age):
-        print("Age should be an integer")
-        return None
 
-    if age < 18:
-        print("You should be at least 18 years old")
-        return None
+    
+    if "age" in kwargs:
+        age = kwargs["age"]
+
+        if not verify_number(age):
+            print("Age should be an integer")
+            return None
+
+        if age < 18:
+            print("You should be at least 18 years old")
+            return None
+
     return {"name": name, **kwargs}
 
 
