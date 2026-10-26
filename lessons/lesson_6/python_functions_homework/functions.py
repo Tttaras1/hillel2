@@ -2,23 +2,69 @@
 
 
 def verify_int(num: int) -> bool:
+    """
+    Verifies if value is int
+
+    Args:
+        num: Value to check
+        
+    Returns:
+        True if int, False if not
+    """
     return type(num) is int
 
 
 def verify_float(num: float) -> bool:
+    """
+    Verifies if value is float
+
+    Args:
+        num: Value to check
+        
+    Returns:
+        True if Float, False if not
+    """
     return type(num) is float
 
 
 def verify_number(num: int | float) -> bool:
+    """
+    Checks whether the value is an integer or a float.
+
+    Args:
+        num: Value to check
+        
+    Returns:
+        True if number, False if not
+    """
     return verify_int(num) or verify_float(num)
 
 
 def verify_non_negative(num: int | float) -> bool:
+    """
+    Checks whether the number is non-negative.
+
+    Args:
+        num: The number to check.
+
+    Returns:
+        True if the number is greater than or equal to zero, False if it is not
+    """
     return num >= 0
 
 
 # Завдання 1.1. Калькулятор вартості
 def calculate_total(price: int | float, quantity: int) -> int | float | None:
+    """
+    Calculate total price from quantity and item price
+    
+    Args:
+        price: Price of the item
+        quantity: Amount of items
+        
+    Returns:
+        Total price
+    """
     if not verify_number(price):
         print("Price should be integer or float")
         return None
@@ -44,6 +90,16 @@ def apply_discount(
     total: int | float,
     discount_percent: int | float = 0
 ) -> int | float | None:
+    """
+    Returns price with applied discount
+    
+    Args:
+        total: Total price for an order
+        discount_percent: Percentage amount of the discount
+        
+    Returns:
+        Calculated price with applied discount
+    """
     if not verify_number(total) or not verify_number(discount_percent):
         print("Total and discount should be numbers")
         return None
@@ -61,6 +117,15 @@ def apply_discount(
 def calculate_statistics(
     numbers: list[int | float]
 ) -> tuple[int | float, int | float, float] | None:
+    """
+    Calculates statistic of the given numbers
+    
+    Args:
+        numbers: Consequence of numbers
+        
+    Returns:
+        A tuple with min, max and average
+    """
     if not numbers:
         print("Sequence shouldn't be empty")
         return None
@@ -77,6 +142,15 @@ def calculate_statistics(
 
 # Завдання 2.1. Гнучкий калькулятор
 def calculate_average(*numbers: int | float) -> float | None:
+    """
+    Calculates average of the given numbers
+    
+    Args:
+        numbers: A variable number of integers or floats.
+        
+    Returns:
+        The average of the numbers, or None if sequence is not valid
+    """
     if not numbers:
         print("Sequence shouldn't be empty")
         return None
@@ -91,6 +165,17 @@ def calculate_average(*numbers: int | float) -> float | None:
 
 # Завдання 2.2. Створення профілю
 def create_profile(name: str, **kwargs: object) -> dict[str, object] | None:
+    """
+    Returns a profile for the user
+    
+    Args:
+        name: User's name
+        kwargs: Object with users data
+        
+    Returns:
+        Dictionary with user details
+    """
+    
     if type(name) is not str or len(name) == 0:
         print("Name can't be empty")
         return None
@@ -163,6 +248,13 @@ def add_product(
     name: str,
     products: list[str] | None = None
 ) -> list[str]:
+    """
+    Adds a product to the given or empty list
+    
+    Args:
+        name: Product's name to add
+        products: List where to append this product
+    """
     if products is None:
         products = []
 
