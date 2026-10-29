@@ -100,8 +100,30 @@ from collections.abc import Callable
 
 
 def calculate_order_cost(tax_rate: float) -> Callable[[float], Callable[[float]]]:
+    """
+    Saves tax rate in enclosure and returns carrying function to calculate order cost
+
+    Args:
+        tax_rate: Tax rate (ex. 0.15 for 15%).
+
+    Returns:
+        A function that accepts shipping cost and returns a function
+        that accepts base price and calculates the total cost.
+    """
+
     def with_shipping(shipping_cost: float):
+        """
+        Returns a function that calculates the total cost for a given base price.
+        Args:
+            Shipping cost: cost of the shipping
+        """
+
         def with_base_price(base_price: float):
+            """
+            Calculate the total cost including tax and shipping.
+            Args:
+                base_price: Base price
+            """
             return base_price + (base_price * tax_rate) + shipping_cost
 
         return with_base_price
@@ -153,10 +175,10 @@ def apply_bonus(base_pay: float, performance_rating: str) -> float:
 def deduct_taxes(total_pay: float, tax_percent: float):
     """
     Deducts taxes from the pay
-    
+
     Args:
         total_pay: Total pay
-        tax_percent: Tax rate 
+        tax_percent: Tax rate
     """
     return total_pay * (1 - tax_percent / 100)
 
@@ -166,7 +188,7 @@ def calculate_employee_net_pay(
 ):
     """
     Calculates total employee pay
-    
+
     Args:
         hours_worked: Total worked hours
         hourly_rate: Rate per hour
