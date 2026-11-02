@@ -11,6 +11,12 @@ SIZE = 1_000_000
 
 
 def make_events():
+    """
+    Creates mocked event list
+    Returns:
+        List of events with len = SIZE
+    """
+    
     return [
         {
             "ip": f"192.0.2.{number % 8}",
@@ -21,6 +27,13 @@ def make_events():
 
 
 def make_callbacks():
+    """
+        Makes a list of callbacks
+        
+        Returns:
+            List of callbacks with len = SIZE
+    """
+    
     def callback():
         return 1
 
@@ -28,6 +41,17 @@ def make_callbacks():
 
 
 def measure(function, data):
+    """
+    Measures the execution time and peak memory usage of a function.
+    Args:
+        function: The function to benchmark.
+        data: The input data passed to the function.
+    Returns:
+        A tuple containing:
+            - The function's result
+            - Execution time in seconds
+            - Peak memory usage in MB
+    """
     result = []
     tracemalloc.start()
     seconds = timeit.timeit(lambda: result.append(function(data)), number=1)
